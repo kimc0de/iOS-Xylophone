@@ -19,7 +19,17 @@ class ViewController: UIViewController {
 
 
     @IBAction func keyPressed(_ sender: UIButton) {
+        
         playSound(key: sender.currentTitle!)
+        //Reduces the sender's (the button that got pressed) opacity to half.
+        sender.alpha = 0.7
+                
+        //Code should execute after 0.2 second delay.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        //Bring's sender's opacity back up to fully opaque.
+            sender.alpha = 1.0
+        }
+        
     }
     func playSound(key: String) {
         guard let url = Bundle.main.url(forResource: key, withExtension: "wav") else { return }
